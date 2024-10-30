@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chat Application</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<h1>Chat Room</h1>
+
+<!-- Displaying chat messages -->
+<div id="chatMessages">
+    <ul>
+        <!-- Loop through a list of messages -->
+        <li th:each="message : ${messages}">
+            <strong th:text="${message.sender}">User</strong>:
+            <span th:text="${message.content}">Message content</span>
+        </li>
+    </ul>
+</div>
+
+<!-- Form to send a new message -->
+<div id="messageForm">
+    <form th:action="@{/send-message}" method="post">
+        <input type="text" name="sender" placeholder="Your name" required />
+        <textarea name="content" placeholder="Your message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+</body>
+</html>
